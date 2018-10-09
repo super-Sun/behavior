@@ -32,11 +32,71 @@
 #### 4.onTimeout：
 该事件在倒计时页面结束后，用户通过为点击页面触发该事件，该事件返回一个参数index，为当前的执行的事件的序号，从0开始
 
+## 举例
+#### 1.自定义多次时间间隔
+``` key
+    var behavior = new Behavior({
+        countdown: 15, // *倒计时
+        duration: [30, 40, 30], // *倒计时时间间隔
+        onStart: function (index) {
+            console.log('onStart');
+        },
+        onClick: function (index) {
+            console.log('onClick: ' + index);
+        },
+        onTimeout: function (index) {
+            console.log('onTimeout');
+        }
+    })
+```
+#### 2.循环两次执行，即总共执行三次时间间隔为40秒的检测
+``` key
+    var behavior = new Behavior({
+        countdown: 15, // *倒计时
+        duration: 40, // *倒计时时间间隔
+        loop: 2,
+        onStart: function (index) {
+            console.log('onStart');
+        },
+        onClick: function (index) {
+            console.log('onClick: ' + index);
+        },
+        onTimeout: function (index) {
+            console.log('onTimeout');
+        }
+    })
+```
+#### 3.自定义提示文字后缀：text
+``` key
+    var behavior = new Behavior({
+        countdown: 15, // *倒计时
+        duration: 40, // *倒计时时间间隔
+        text: '秒内不点击屏幕，将被认定失效！',
+        loop: 2,
+        onStart: function (index) {
+            console.log('onStart');
+        },
+        onClick: function (index) {
+            console.log('onClick: ' + index);
+        },
+        onTimeout: function (index) {
+            console.log('onTimeout');
+        }
+    })
+```
 ## 实例方法说明
 #### reStart
 重新启动当前实例的计时
+``` key
+    behavior.reStart()
+```
 #### stop
 停止计时并且重置当前的实例的内容
+``` key
+    behavior.stop()
+```
 #### destroy
 销毁当前的实例的内容
-
+``` key
+    behavior.destroy()
+```
