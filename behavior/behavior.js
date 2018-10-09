@@ -10,13 +10,13 @@
         this.index = 0
         // 默认值
         var options = {
-            countdown: 5, // *倒计时
+            countdown: 15, // *倒计时
+            text: '秒内未点击屏幕，系统将自动退出！',
             duration: 10, // *倒计时时间间隔,接受类型： Number 或者 Array <Number>
             // 循环次数
             loop: 0, // -1：表示无限循环、0：表示不循环、所有正整数都有效的循环次数
             // 倒计时事件触发
             onStart: function () {
-
             },
             // 点击屏幕时间
             onClick: function () {
@@ -56,7 +56,7 @@
         })
         var $mask = $('<div class="bh-mask"></div>')
         var $dialog = $('<div class="bh-dialog"></div>')
-        var $img = $('<div class="bh-img-box"><img src="icon_01.png" /></div>')
+        var $img = $('<div class="bh-img-box"><img src="./behavior/icon_01.png" /></div>')
         var $content = $('<div class="bh-content"></div>')
         $dialog.append($img)
         $dialog.append($content)
@@ -74,6 +74,7 @@
         var self = this
         var duration = self.options.duration[this.index] || self.options.duration[0]
         var countdown = self.options.countdown
+        var text = self.options.text
         var wait = duration + countdown
         var $cover = self.$cover
         var $content = self.$cover.find('.bh-content')
@@ -82,16 +83,16 @@
             if (wait === 0) {
                 clearTimeout(self.timer)
                 $cover.removeClass('show').hide()
-                $content.text(countdown + '秒内未点击屏幕，系统将退出！')
+                $content.text(countdown + text)
                 // 执行超时事件
                 self.options.onTimeout(self.index)
             } else if (wait <= countdown) {
                 if (!$cover.hasClass('show')) {
-                    self.options.onStart()
+                    self.options.onStart(self.index)
                 }
                 $cover.addClass('show')
                 $cover.show()
-                $content.text(wait + '秒内未点击屏幕，系统将退出！')
+                $content.text(wait + text)
                 wait--
                 if (self.timer) clearTimeout(self.timer)
                 self.timer = setTimeout(function () {

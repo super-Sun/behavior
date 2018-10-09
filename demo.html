@@ -4,30 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>demo</title>
-    <link rel="stylesheet" href="behavior.css">
+    <link rel="stylesheet" href="behavior/behavior.css">
 </head>
 <body>
 <!--依赖jquery-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="behavior.js"></script>
+<script src="behavior/behavior.js"></script>
 <script>
+    // 1.自定义多次时间间隔
     var behavior = new Behavior({
         countdown: 15, // *倒计时
         duration: [30, 40, 30], // *倒计时时间间隔
-        // 循环
-        loop: 2,
-        onStart: function () {
+        onStart: function (index) {
             console.log('onStart');
         },
         onClick: function (index) {
-            // TODO:
             console.log('onClick: ' + index);
-            // behavior.reStart()
         },
         onTimeout: function (index) {
             console.log('onTimeout');
         }
     })
+    // // 2.循环两次执行，即总共执行三次时间间隔为40秒的检测
+    // var behavior = new Behavior({
+    //     countdown: 15, // *倒计时
+    //     duration: 40, // *倒计时时间间隔
+    //     loop: 2,
+    //     onStart: function (index) {
+    //         console.log('onStart');
+    //     },
+    //     onClick: function (index) {
+    //         console.log('onClick: ' + index);
+    //     },
+    //     onTimeout: function (index) {
+    //         console.log('onTimeout');
+    //     }
+    // })
+    // // 3.自定义提示文字后缀：text
+    // var behavior = new Behavior({
+    //     countdown: 15, // *倒计时
+    //     duration: 40, // *倒计时时间间隔
+    //     text: '秒内不点击屏幕，将被认定失效！',
+    //     loop: 2,
+    //     onStart: function (index) {
+    //         console.log('onStart');
+    //     },
+    //     onClick: function (index) {
+    //         console.log('onClick: ' + index);
+    //     },
+    //     onTimeout: function (index) {
+    //         console.log('onTimeout');
+    //     }
+    // })
 </script>
 </body>
 </html>
