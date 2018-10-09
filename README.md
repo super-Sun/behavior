@@ -100,3 +100,6 @@
 ``` key
     behavior.destroy()
 ```
+
+## 效果预览
+![image](https://github.com/super-Sun/fileSource/blob/master/behavior_show.png)
