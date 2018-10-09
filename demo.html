@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>demo</title>
+    <link rel="stylesheet" href="behavior.css">
+</head>
+<body>
+<!--依赖jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="behavior.js"></script>
+<script>
+    var behavior = new Behavior({
+        countdown: 15, // *倒计时
+        duration: [30, 40, 30], // *倒计时时间间隔
+        // 循环
+        loop: 2,
+        onStart: function () {
+            console.log('onStart');
+        },
+        onClick: function (index) {
+            // TODO:
+            console.log('onClick: ' + index);
+            // behavior.reStart()
+        },
+        onTimeout: function (index) {
+            console.log('onTimeout');
+        }
+    })
+</script>
+</body>
+</html>
